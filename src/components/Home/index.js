@@ -4,6 +4,8 @@ import Header from '../Header'
 
 import './index.css'
 
+console.log('a')
+
 const Home = () => (
   <div className="home-container">
     <Header />
