@@ -1,14 +1,14 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {BsSearch} from 'react-icons/bs'
-import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner' // Ensure Loader is imported correctly
 
 import Header from '../Header'
 import ProfileDetails from '../ProfileDetails'
 import FiltersGroup from '../FiltersGroup'
 import JobCard from '../JobCard'
 
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css' // Ensure the path is correct
 import './index.css'
 
 const apiStatusConstants = {
@@ -52,7 +52,7 @@ class Jobs extends Component {
 
   getJobs = async () => {
     this.setState({jobsApiStatus: apiStatusConstants.inProgress})
-
+    console.log('b')
     const {
       activeSalaryRangeId,
       employmentTypesChecked,
