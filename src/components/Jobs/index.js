@@ -1,14 +1,14 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {BsSearch} from 'react-icons/bs'
-import Loader from 'react-loader-spinner' // Ensure Loader is imported correctly
+import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 import ProfileDetails from '../ProfileDetails'
 import FiltersGroup from '../FiltersGroup'
 import JobCard from '../JobCard'
 
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css' // Ensure the path is correct
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import './index.css'
 
 const apiStatusConstants = {
@@ -44,6 +44,7 @@ class Jobs extends Component {
     } else {
       updatedList = [...updatedList, typeId]
     }
+
     this.setState({employmentTypesChecked: updatedList}, this.getJobs)
   }
 
@@ -52,7 +53,7 @@ class Jobs extends Component {
 
   getJobs = async () => {
     this.setState({jobsApiStatus: apiStatusConstants.inProgress})
-    console.log('b')
+
     const {
       activeSalaryRangeId,
       employmentTypesChecked,
@@ -92,47 +93,32 @@ class Jobs extends Component {
   }
 
   getProfileDetails = async () => {
-    this.setState({
-      profileApiStatus: apiStatusConstants.inProgress,
-    })
+    this.setState({profileApiStatus: apiStatusConstants.inProgress})
 
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/profile'
-
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
       method: 'GET',
     }
-
     const response = await fetch(apiUrl, options)
     const data = await response.json()
-
-    if (response.ok) {
+    if (response.ok === true) {
       const profileDetails = data.profile_details
-
       const updatedData = {
         name: profileDetails.name,
         profileImageUrl: profileDetails.profile_image_url,
         shortBio: profileDetails.short_bio,
       }
-
       this.setState({
         profileDetails: updatedData,
         profileApiStatus: apiStatusConstants.success,
       })
     } else {
-      this.setState({
-        profileApiStatus: apiStatusConstants.failure,
-      })
+      this.setState({profileApiStatus: apiStatusConstants.failure})
     }
-  }
-
-  onSearchInput = event => {
-    this.setState({
-      searchInput: event.target.value,
-    })
   }
 
   renderSearchBar = searchBarID => {
@@ -144,14 +130,14 @@ class Jobs extends Component {
           type="search"
           placeholder="Search"
           value={searchInput}
-          onChange={this.onSearchInput}
+          onChange={e => this.setState({searchInput: e.target.value})}
         />
         <button
           className="search-button"
           type="button"
           data-testid="searchButton"
           onClick={() => this.getJobs()}
-          aria-label="button-text"
+          aria-label="Logout"
         >
           <BsSearch className="search-icon" />
         </button>
@@ -166,7 +152,6 @@ class Jobs extends Component {
       activeSalaryRangeId,
       employmentTypesChecked,
     } = this.state
-
     return (
       <div className="side-bar">
         {this.renderSearchBar('smallSearchBar')}
@@ -274,5 +259,4 @@ class Jobs extends Component {
     )
   }
 }
-
 export default Jobs
