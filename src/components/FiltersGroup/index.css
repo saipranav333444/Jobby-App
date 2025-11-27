@@ -1,0 +1,55 @@
+.filters-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filters-section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f8fafc;
+}
+
+.filters-list {
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+}
+
+.filters-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-label {
+  font-family: "Roboto";
+  color: #f1f5f9;
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.seperator {
+  border: none;
+  border-top: 1px solid #f1f5f9;
+  width: 100%;
+  margin-top: 10px 0;
+}
+
+.filter-heading {
+  margin: 0;
+  font-family: "Roboto";
+  color: #f8fafc;
+  font-size: 18px;
+  font-weight: 500;
+}
