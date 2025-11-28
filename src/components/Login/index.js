@@ -62,7 +62,7 @@ const Login = () => {
             type="text"
             className="input-field"
             value={username}
-            placeholder="Rahul"
+            placeholder="rahul"
             onChange={(e) => setUsername(e.target.value)}
           />
           <label htmlFor="password" className="input-label">
